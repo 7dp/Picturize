@@ -1,0 +1,6 @@
+framework module Pods_PicturizeTests {
+  umbrella header "Pods-PicturizeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
