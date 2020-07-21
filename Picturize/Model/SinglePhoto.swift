@@ -39,7 +39,7 @@ struct SinglePhotoSrc: Codable {
 	let medium: String
 	let small: String
 	let portrait: String
-	let landscape, tiny: String		// MARK: here
+	let landscape, tiny: String
 	
 	enum CodingKeys: String, CodingKey {
 		case original = "original"
@@ -48,7 +48,7 @@ struct SinglePhotoSrc: Codable {
 		case medium = "medium"
 		case small = "small"
 		case portrait = "portrait"
-		case landscape, tiny		 // MARK: here
+		case landscape, tiny
 	}
 }
 

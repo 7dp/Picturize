@@ -14,8 +14,6 @@ class PhotosVM {
 	var photoList = [Photo]()
 	var page = 1
 	var isFetchingInProgress = false
-	
-	//MARK : Try to decode response with JSONDecoder()
 
 	func fetchCuratedPhotos(onSuccess: ((String, [IndexPath]?) -> Void)?, onFailed: ((String) -> Void)?) {
 		let curatedUrl = ApiRequest.photosBaseUrl + "/curated"
