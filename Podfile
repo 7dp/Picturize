@@ -12,6 +12,7 @@ target 'Picturize' do
 #	pod 'EEZoomableImageView'
 	pod 'Lightbox'
 	pod 'Toast-Swift'
+	pod 'VersaPlayer'
 
   target 'PicturizeTests' do
     inherit! :search_paths

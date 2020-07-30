@@ -30,6 +30,9 @@
 		ED29299524B5A64600C07DC4 /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED29299424B5A64600C07DC4 /* ObjectAssociation.swift */; };
 		ED29299724B5A6A900C07DC4 /* UIActivityIndicatorView - customIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED29299624B5A6A900C07DC4 /* UIActivityIndicatorView - customIndicator.swift */; };
 		ED29299924B5B0AB00C07DC4 /* no_connection.png in Resources */ = {isa = PBXBuildFile; fileRef = ED29299824B5B0AA00C07DC4 /* no_connection.png */; };
+		ED2EFE5324D29A550046463B /* placeholder_image.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2EFE5224D29A550046463B /* placeholder_image.png */; };
+		ED2EFE5524D2A65D0046463B /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2EFE5424D2A65D0046463B /* PlayerController.swift */; };
+		ED2EFE5724D2A6C30046463B /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED2EFE5624D2A6C30046463B /* Player.storyboard */; };
 		ED369ACA24AD8D8400CBBEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED369AC924AD8D8400CBBEB7 /* AppDelegate.swift */; };
 		ED369AD124AD8D8400CBBEB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED369ACF24AD8D8400CBBEB7 /* Main.storyboard */; };
 		ED369AD324AD8D8800CBBEB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED369AD224AD8D8800CBBEB7 /* Assets.xcassets */; };
@@ -105,6 +108,9 @@
 		ED29299424B5A64600C07DC4 /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
 		ED29299624B5A6A900C07DC4 /* UIActivityIndicatorView - customIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView - customIndicator.swift"; sourceTree = "<group>"; };
 		ED29299824B5B0AA00C07DC4 /* no_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_connection.png; sourceTree = "<group>"; };
+		ED2EFE5224D29A550046463B /* placeholder_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder_image.png; sourceTree = "<group>"; };
+		ED2EFE5424D2A65D0046463B /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
+		ED2EFE5624D2A6C30046463B /* Player.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
 		ED369AC624AD8D8400CBBEB7 /* Picturize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picturize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED369AC924AD8D8400CBBEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED369AD024AD8D8400CBBEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 			children = (
 				ED29299824B5B0AA00C07DC4 /* no_connection.png */,
 				EDF572FD24B6F34E0054300D /* search.png */,
+				ED2EFE5224D29A550046463B /* placeholder_image.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -301,6 +308,7 @@
 				ED0EDCCC24BD845900732934 /* MainNavigationContoller.swift */,
 				EDF572F924B6ED5A0054300D /* SearchVC.swift */,
 				EDFFC9A324BE940A0033F73D /* ProfileVC.swift */,
+				ED2EFE5424D2A65D0046463B /* PlayerController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -322,6 +330,7 @@
 				ED092EBC24B01EFF00AB1D17 /* Detail.storyboard */,
 				EDF572F724B6EBDE0054300D /* Search.storyboard */,
 				EDFFC9A124BE8CE80033F73D /* Profile.storyboard */,
+				ED2EFE5624D2A6C30046463B /* Player.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -477,6 +486,8 @@
 				EDF572FE24B6F34E0054300D /* search.png in Resources */,
 				ED369AD324AD8D8800CBBEB7 /* Assets.xcassets in Resources */,
 				EDF572F824B6EBDE0054300D /* Search.storyboard in Resources */,
+				ED2EFE5324D29A550046463B /* placeholder_image.png in Resources */,
+				ED2EFE5724D2A6C30046463B /* Player.storyboard in Resources */,
 				ED369AD124AD8D8400CBBEB7 /* Main.storyboard in Resources */,
 				ED092EBD24B01EFF00AB1D17 /* Detail.storyboard in Resources */,
 			);
@@ -640,6 +651,7 @@
 				EDFFC9A424BE940A0033F73D /* ProfileVC.swift in Sources */,
 				ED092EC124B027D100AB1D17 /* VideosVM.swift in Sources */,
 				ED1BB34124B818A800D6D42F /* SearchItemVM.swift in Sources */,
+				ED2EFE5524D2A65D0046463B /* PlayerController.swift in Sources */,
 				ED20362224AF7286007374A6 /* PhotoItemVM.swift in Sources */,
 				ED092EC524B0644A00AB1D17 /* VideoItemVM.swift in Sources */,
 			);

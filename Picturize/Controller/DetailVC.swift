@@ -45,19 +45,22 @@ class DetailVC: UIViewController {
 		placeLabel.text = viewModel.getImageProvider
 		resolutionLabel.text = viewModel.getVideoResolution
 		durationLabel.text = viewModel.getVideoDuration
+		var placeholderImage: UIImage!
 		if #available(iOS 13.0, *) {
-			imageView.sd_setImage(with: viewModel.getImageURL, placeholderImage: UIImage(systemName: "photo.fill")) { (image, error, cacheType, url) in
-				if let image = image {
-					self.setDynamicHeightImage(image: image)
-					self.viewModel.setImage(image: image)
-					self.actionStack.isHidden = false
-				}
-				if let _ = error {
-					self.view.makeToast("No internet connection")
-				}
-			}
+			placeholderImage = UIImage(systemName: "photo.fill")
 		} else {
-			// Fallback on earlier versions
+			placeholderImage = UIImage(named: "placeholder_image")
+		}
+		
+		imageView.sd_setImage(with: viewModel.getImageURL, placeholderImage: placeholderImage) { (image, error, cacheType, url) in
+			if let image = image {
+				self.setDynamicHeightImage(image: image)
+				self.viewModel.setImage(image: image)
+				self.actionStack.isHidden = false
+			}
+			if let _ = error {
+				self.view.makeToast("No internet connection")
+			}
 		}
 		
 		/// Add tap gesture for imageview tap
@@ -75,15 +78,6 @@ class DetailVC: UIViewController {
 	private func setDynamicHeightImage(image: UIImage) {
 		let ratio = image.size.width / image.size.height
 		constraintHeightImageView.constant = imageView.bounds.width / ratio
-		
-//		if self.view.frame.width > self.view.frame.height {
-//			let newHeight = self.view.frame.width / ratio
-//			imageView.frame.size = CGSize(width: self.view.frame.width, height: newHeight)
-//		}
-//		else{
-//			let newWidth = self.view.frame.height * ratio
-//			imageView.frame.size = CGSize(width: newWidth, height: self.view.frame.height)
-//		}
 	}
 	
 	/// ImageView tapped
@@ -105,6 +99,24 @@ class DetailVC: UIViewController {
 		controller.modalPresentationStyle = .fullScreen
 		controller.dynamicBackground = true
 		present(controller, animated: true, completion: nil)
+	}
+	
+	/// USELESS FUNCTION
+	private func playVideo() {
+		guard var videoUrl = self.viewModel.getVideoURL else {
+			print("No video url!")
+			return
+		}
+		if videoUrl.absoluteString != nil {
+			var urlString = videoUrl.absoluteString
+			if let targetRange = urlString.range(of: "?") {
+				urlString.removeSubrange(targetRange.lowerBound..<urlString.endIndex)
+			}
+			videoUrl = URL(string: urlString)!
+		}
+		let playerController = UIStoryboard(name: "Player", bundle: nil).instantiateViewController(withIdentifier: "PlayerController") as! PlayerController
+		playerController.url = videoUrl
+		present(playerController, animated: true, completion: nil)
 	}
 	
 	@IBAction func downloadAction(_ sender: Any) {

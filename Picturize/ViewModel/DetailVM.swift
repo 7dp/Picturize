@@ -16,7 +16,6 @@ class DetailVM {
 	var image: UIImage!
 	var isVideo: Bool!
 	
-	// MARK: PHOTO
 	var getAuthor: String {
 		if isVideo {
 			return video?.user?.name ?? "-"
@@ -76,7 +75,6 @@ class DetailVM {
 			if seconds.count == 1 {
 				seconds = "0" + seconds
 			}
-			
 			return minutes + ":" + seconds
 		}
 		return ""
@@ -89,7 +87,6 @@ class DetailVM {
 	func setImage(image: UIImage) {
 		self.image = image
 	}
-
 	
 	var getLightboxImage: [LightboxImage] {
 		var images: [LightboxImage] = []
@@ -102,10 +99,9 @@ class DetailVM {
 			}
 			newVideoUrl = URL(string: urlString)!
 		}
+//		let testUrl = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+//		let testUrl2 = URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
 		
-		print("IMAGE -> ", self.getImage ?? "nil")
-		print("NEW URL -> ", newVideoUrl)
-//		let test = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
 		var image: LightboxImage
 		if self.getImage == nil {
 			image = LightboxImage(imageURL: self.getImageURL, text: self.getAuthor, videoURL: newVideoUrl)

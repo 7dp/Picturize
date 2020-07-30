@@ -9,6 +9,7 @@ PODS:
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
   - Toast-Swift (5.0.1)
+  - VersaPlayer (3.0.2)
   - XLPagerTabStrip (8.1.0)
 
 DEPENDENCIES:
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - Lightbox
   - SDWebImage
   - Toast-Swift
+  - VersaPlayer
   - XLPagerTabStrip
 
 SPEC REPOS:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - Lightbox
     - SDWebImage
     - Toast-Swift
+    - VersaPlayer
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -35,8 +38,9 @@ SPEC CHECKSUMS:
   Lightbox: cede4a64f2d864da1f7e7959aa78a8659a311e7c
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+  VersaPlayer: 0e9a0ea7da786729ffb377dbd17b34641a8265e4
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: 100e8bd6d81f1981d4ca0b038b219e8799d12e27
+PODFILE CHECKSUM: fae524adc55fae20a1d269633a3fb08237fb270d
 
 COCOAPODS: 1.9.2
