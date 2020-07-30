@@ -25,12 +25,9 @@ class SearchVC: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-//		let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//		if #available(iOS 13.0, *) {
-//			let touch = UIHoverGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//			view.addGestureRecognizer(touch)
-//		}
-//		view.addGestureRecognizer(tap)
+		if let layout = self.collectionView.collectionViewLayout as? PinterestLayout {
+			layout.delegate = self
+		}
 
 		self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		
@@ -85,7 +82,7 @@ class SearchVC: UIViewController {
 				
 				// If array is empty
 				if self.viewModel.getPhotosResultsItemCount == 0 {
-					self.showToast(message: "Nothings found")
+					self.view.makeToast("Nothings found")
 					self.baseView.isHidden = false
 				}
 				
@@ -115,7 +112,7 @@ class SearchVC: UIViewController {
 				
 				// If array is empty
 				if self.viewModel.getVideosResultsItemCount == 0 {
-					self.showToast(message: "Nothings found")
+					self.view.makeToast("Nothings found")
 					self.baseView.isHidden = false
 				}
 		}, onFailed: { (message) in
@@ -164,6 +161,27 @@ private extension SearchVC {
 	}
 }
 
+extension SearchVC: PinterestLayoutDelegate {
+	func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+		var imageWidth : CGFloat = 0
+		var imageHeight : CGFloat = 0
+		var ratio: CGFloat = 0
+		var height: CGFloat = 0
+		let width = (collectionView.bounds.size.width / 2)
+		
+		if scopePosition == 0 {
+			imageWidth = CGFloat(viewModel.getPhotos[indexPath.item].width)
+			imageHeight = CGFloat(viewModel.getPhotos[indexPath.item].height)
+		} else {
+			imageWidth = CGFloat(viewModel.getVideos[indexPath.item].width)
+			imageHeight = CGFloat(viewModel.getVideos[indexPath.item].height)
+		}
+		ratio = (imageWidth / imageHeight).rounded(toPlaces: 3)
+		height = width / ratio
+		return height
+	}
+}
+
 // MARK: - Search Bar
 extension SearchVC: UISearchBarDelegate, UISearchResultsUpdating {
 	
@@ -196,13 +214,10 @@ extension SearchVC: UISearchBarDelegate, UISearchResultsUpdating {
 	
 	// Scope bar index changed
 	func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-		print("#SCOPE INDEX CHANGED")
 		self.searchController.searchBar.endEditing(true)
 		self.scopePosition = selectedScope
 		
 		if !self.query.isEmpty {
-			
-			
 			if !(self.query == self.unSubmittedQuery) {
 				self.searchController.searchBar.text = self.query.trimmingCharacters(in: .whitespacesAndNewlines)
 				self.query = self.searchController.searchBar.text ?? ""
@@ -235,7 +250,7 @@ extension SearchVC: UISearchBarDelegate, UISearchResultsUpdating {
 }
 
 // MARK: - Collectionview
-extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
+extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if scopePosition == 0 {
@@ -269,17 +284,17 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
 		return cell
 	}
 	
-	// 858 092
-	// Prefetch data
+	// Prefetching
 	func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
 		if indexPaths.contains(where: self.isLoadingCell(for:)) {
-			
-//			if self.viewmod
-			
 			if scopePosition == 0 {
 				self.fetchPhotosByQuery(dataQuery: self.query)
 			} else {
-				self.fetchVideosByQuery(dataQuery: self.query)
+				if self.viewModel.getVideosResultsItemCount < self.viewModel.videoTotalResults {
+					self.fetchVideosByQuery(dataQuery: self.query)
+				} else {
+					return
+				}
 			}
 		}
 	}
@@ -289,34 +304,12 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
 		let destController = storyboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
 		
 		if scopePosition == 0 {
-			print("#IS PHOTO")
 			destController.viewModel.photo = self.viewModel.getSinglePhotoResult(indexPath: indexPath)
 			destController.isVideo = false
 		} else {
-			print("#IS VIDEO")
 			destController.viewModel.video = self.viewModel.getSingleVideoResult(indexPath: indexPath)
 			destController.isVideo = true
 		}
 		self.navigationController?.pushViewController(destController, animated: true)
 	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		let width = collectionView.bounds.size.width / 2
-		let height = width
-		
-		return CGSize(width: width, height: height)
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-	}
-	
 }

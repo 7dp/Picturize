@@ -8,12 +8,14 @@ PODS:
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
+  - Toast-Swift (5.0.1)
   - XLPagerTabStrip (8.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Lightbox
   - SDWebImage
+  - Toast-Swift
   - XLPagerTabStrip
 
 SPEC REPOS:
@@ -23,6 +25,7 @@ SPEC REPOS:
     - Imaginary
     - Lightbox
     - SDWebImage
+    - Toast-Swift
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -31,8 +34,9 @@ SPEC CHECKSUMS:
   Imaginary: 18c5bba364229eef383b925199db442e71d175e1
   Lightbox: cede4a64f2d864da1f7e7959aa78a8659a311e7c
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: d8102b18f63c766aec7d654d02285e84667ac910
+PODFILE CHECKSUM: 100e8bd6d81f1981d4ca0b038b219e8799d12e27
 
 COCOAPODS: 1.9.2

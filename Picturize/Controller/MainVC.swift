@@ -63,14 +63,10 @@ class MainVC: ButtonBarPagerTabStripViewController {
 	override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 		var controllers = [UIViewController]()
 		
-		if #available(iOS 13.0, *) {
-			let photosVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PhotosVC")
-			let videosVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "VideosVC")
-			controllers.append(photosVC)
-			controllers.append(videosVC)
-		} else {
-			// Fallback on earlier versions
-		}
+		let photosVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotosVC")
+		let videosVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VideosVC")
+		controllers.append(photosVC)
+		controllers.append(videosVC)
 		return controllers
 	}
 	

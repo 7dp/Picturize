@@ -8,6 +8,7 @@
 
 import UIKit
 import Lightbox
+import Toast_Swift
 
 class DetailVC: UIViewController {
 	
@@ -52,7 +53,7 @@ class DetailVC: UIViewController {
 					self.actionStack.isHidden = false
 				}
 				if let _ = error {
-					self.showToast(message: "No internet connection")
+					self.view.makeToast("No internet connection")
 				}
 			}
 		} else {

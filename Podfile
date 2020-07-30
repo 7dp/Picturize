@@ -11,6 +11,7 @@ target 'Picturize' do
 	pod 'SDWebImage'
 #	pod 'EEZoomableImageView'
 	pod 'Lightbox'
+	pod 'Toast-Swift'
 
   target 'PicturizeTests' do
     inherit! :search_paths

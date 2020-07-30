@@ -14,7 +14,7 @@ class MainNavigationContoller: UINavigationController {
 		super.viewDidLoad()
 		view.backgroundColor = .white
 		
-		if UserDefaults.standard.isLoggedIn {
+		if !UserDefaults.standard.isLoggedIn {
 			let mainController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as! MainVC
 			viewControllers = [mainController]
 		} else {

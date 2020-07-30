@@ -20,6 +20,9 @@ class VideosVC: UIViewController, IndicatorInfoProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		if let layout = collectionView.collectionViewLayout as? PinterestLayout {
+			layout.delegate = self
+		}
 		showDefaultState()
 		
 		refreshBtn.layer.cornerRadius = 8
@@ -48,10 +51,10 @@ class VideosVC: UIViewController, IndicatorInfoProvider {
 				self.errorView.isHidden = true
 				self.collectionView.reloadData()
 				
-				guard let newIndexPathsToReload = indexPathToReloads
-					else {
-						print("PAGE 1 OR LAST")
-						return }
+				guard let newIndexPathsToReload = indexPathToReloads else {
+					print("PAGE 1/LAST")
+					return
+				}
 				let indexPathsToReload = self.visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
 				print("PAGE > 1")
 				
@@ -88,6 +91,17 @@ private extension VideosVC {
 	}
 }
 
+extension VideosVC: PinterestLayoutDelegate {
+	func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+		let videoWidth = CGFloat(viewModel.getVideos[indexPath.item].width)
+		let videoHeight = CGFloat(viewModel.getVideos[indexPath.item].height)
+		let ratio = (videoWidth / videoHeight).rounded(toPlaces: 3)
+		let width = (collectionView.bounds.size.width / 2)
+		let height: CGFloat = width / ratio
+		return height
+	}
+}
+
 // MARK: CollectionView
 extension VideosVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
 	
@@ -117,7 +131,6 @@ extension VideosVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
 		}
 	}
 	
-	// Click action on item here
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let storyboard = UIStoryboard(name: "Detail", bundle: nil)
 		let destController = storyboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
@@ -126,23 +139,5 @@ extension VideosVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
 		
 		self.navigationController?.pushViewController(destController, animated: true)
 	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		let width = collectionView.bounds.size.width / 2
-		let height = width
-		return CGSize(width: width, height: height)
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-	}
-	
+
 }

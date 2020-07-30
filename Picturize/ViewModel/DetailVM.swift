@@ -104,13 +104,13 @@ class DetailVM {
 		}
 		
 		print("IMAGE -> ", self.getImage ?? "nil")
-		print("NEW URL -> ", newVideoUrl!)
-		let test = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+		print("NEW URL -> ", newVideoUrl)
+//		let test = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
 		var image: LightboxImage
 		if self.getImage == nil {
-			image = LightboxImage(imageURL: self.getImageURL, text: self.getAuthor, videoURL: test)
+			image = LightboxImage(imageURL: self.getImageURL, text: self.getAuthor, videoURL: newVideoUrl)
 		} else {
-			image = LightboxImage(image: self.getImage!, text: self.getAuthor, videoURL: test)
+			image = LightboxImage(image: self.getImage!, text: self.getAuthor, videoURL: newVideoUrl)
 		}
 		images.append(image)
 		return images

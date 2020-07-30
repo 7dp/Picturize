@@ -90,9 +90,9 @@ enum Quality: String, Decodable {
 }
 
 struct VideoPicture: Decodable {
-    let id: Int
+    let id: Int?
     let picture: String?
-    let nr: Int
+    let nr: Int?
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "id"

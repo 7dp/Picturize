@@ -15,6 +15,7 @@ class PhotoCell: UICollectionViewCell {
 	var viewModel: PhotoItemVM! {
 		didSet {
 			imageView.sd_setImage(with: viewModel.getImageUrl)
+			imageView.layer.cornerRadius = 10
 		}
 	}
 	

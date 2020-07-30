@@ -60,11 +60,11 @@ class LoginVC: UIViewController {
 				self.dismiss(animated: true, completion: nil)
 				
 			} else {
-				self.showToast(message: "No user with this data")
+				self.view.makeToast("No user with this data")
 				self.indicatorView?.stopAnimating()
 			}
 		} else {
-			self.showToast(message: "Please fill all data")
+			self.view.makeToast("Please fill all data")
 			self.indicatorView?.stopAnimating()
 		}
 	}

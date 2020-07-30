@@ -10,15 +10,15 @@ import Alamofire
 import Foundation
 
 class PhotosVM {
-		
-	var photoList = [Photo]()
+	
+	private var photoList = [Photo]()
 	var page = 1
 	var isFetchingInProgress = false
-
+	
 	func fetchCuratedPhotos(onSuccess: ((String, [IndexPath]?) -> Void)?, onFailed: ((String) -> Void)?) {
 		let curatedUrl = ApiRequest.photosBaseUrl + "/curated"
 		let param: Parameters = ["per_page" : "20", "page": page]
-
+		
 		guard !isFetchingInProgress else { return }
 		
 		self.isFetchingInProgress = true
@@ -31,6 +31,7 @@ class PhotosVM {
 					self.isFetchingInProgress = false
 					return
 				}
+				
 				if !photos.photos.isEmpty {
 					self.isFetchingInProgress = false
 					self.page += 1

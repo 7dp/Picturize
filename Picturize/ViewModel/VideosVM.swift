@@ -62,6 +62,10 @@ class VideosVM {
 		return VideoItemVM(videos: self.videoList, indexPath: indexPath)
 	}
 	
+	var getVideos: [Video] {
+		return self.videoList
+	}
+	
 	var getVideosCount: Int {
 		return self.videoList.count
 	}

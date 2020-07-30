@@ -19,6 +19,9 @@ class PhotosVC: UIViewController, IndicatorInfoProvider {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		if let layout = collectionView.collectionViewLayout as? PinterestLayout {
+			layout.delegate = self
+		}
 		showDefaultState()
 		
 		refreshBtn.layer.cornerRadius = 8
@@ -46,11 +49,12 @@ class PhotosVC: UIViewController, IndicatorInfoProvider {
 				self.errorView.isHidden = true
 				self.collectionView.reloadData()
 				
-				guard let newIndexPathsToReload = indexPathToReloads
-					else {
-						print("PAGE 1 OR LAST")
-						return }
+				guard let newIndexPathsToReload = indexPathToReloads else {
+					print("PAGE 1/LAST")
+					return
+				}
 				let indexPathsToReload = self.visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+				
 				print("PAGE > 1")
 				
 		}, onFailed: { (message) in
@@ -85,8 +89,19 @@ private extension PhotosVC {
 	}
 }
 
+extension PhotosVC: PinterestLayoutDelegate {
+	func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+		let imageWidth = CGFloat(viewModel.getPhotos[indexPath.item].width)
+		let imageHeight = CGFloat(viewModel.getPhotos[indexPath.item].height)
+		let ratio = (imageWidth / imageHeight).rounded(toPlaces: 3)
+		let width = (collectionView.bounds.size.width / 2)
+		let height: CGFloat = width / ratio
+		return height
+	}
+}
+
 // MARK: - CollectionView
-extension PhotosVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
+extension PhotosVC: UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDataSourcePrefetching {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return self.viewModel.getPhotosCount
@@ -96,7 +111,6 @@ extension PhotosVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
 		
 		if isLoadingCell(for: indexPath) {
-			print("LOADING")
 			cell.contentView.backgroundColor = .white
 			let indicatorView = UIActivityIndicatorView.customIndicator(at: cell.contentView.center)
 			cell.contentView.addSubview(indicatorView)
@@ -123,24 +137,12 @@ extension PhotosVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
 		}
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		let width = collectionView.bounds.size.width / 2
-		let height = width
-		
-		return CGSize(width: width, height: height)
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-	}
-	
+}
+
+extension CGFloat {
+    func rounded(toPlaces places:Int) -> CGFloat {
+        let divisor = pow(10.0, CGFloat(places))
+        return (self * divisor).rounded() / divisor
+    }
 }
 

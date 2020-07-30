@@ -16,6 +16,7 @@ class SearchVM {
 	
 	var page = 1
 	var perPage = 20
+	var videoTotalResults = 0
 	private var isFetchingInProgress = false
 	
 	//MARK: - PHOTO
@@ -26,9 +27,10 @@ class SearchVM {
 		
 		print("IS PHOTOS FETCHING IN PROGRESS: ", isFetchingInProgress)
 		
-//		guard !isFetchingInProgress else {
-//			print("isPhotosFetchingInProgress")
-//			return }
+		guard !isFetchingInProgress else {
+			print("isPhotosFetchingInProgress")
+			return
+		}
 		isFetchingInProgress = true
 		
 		AF.request(url, parameters: param, headers: headers)
@@ -39,10 +41,10 @@ class SearchVM {
 					self.isFetchingInProgress = false
 					return
 				}
+				self.isFetchingInProgress = false
 				if !photos.photos.isEmpty {
-					self.isFetchingInProgress = false
 					if let totalResults = photos.totalResults {
-						if !(totalResults <= self.perPage) {
+						if totalResults > self.perPage {
 							self.page += 1
 						}
 					}
@@ -67,6 +69,10 @@ class SearchVM {
 		return self.resultsPhotos.count
 	}
 	
+	var getPhotos: [Photo] {
+		return self.resultsPhotos
+	}
+	
 	func getPhotoItemViewModel(indexPath: IndexPath) -> PhotoItemVM {
 		return PhotoItemVM(photos: self.resultsPhotos, indexPath: indexPath)
 	}
@@ -89,9 +95,10 @@ class SearchVM {
 		
 		print("IS VIDEOS FETCHING IN PROGRESS: ", isFetchingInProgress)
 		
-//		guard !self.isFetchingInProgress else {
-//			print("isVideosFetchingInProgress")
-//			return }
+		guard !isFetchingInProgress else {
+			print("isVideosFetchingInProgress")
+			return
+		}
 		self.isFetchingInProgress = true
 		
 		AF.request(url, parameters: param, headers: headers)
@@ -102,37 +109,16 @@ class SearchVM {
 					self.isFetchingInProgress = false
 					return
 				}
+				self.isFetchingInProgress = false
 				if !videos.videos.isEmpty {
-					self.isFetchingInProgress = false
-					if !(videos.totalResults <= self.perPage) {
+					self.resultsVideos.append(contentsOf: videos.videos)
+					self.videoTotalResults = videos.totalResults
+					if videos.totalResults > self.perPage {
 						self.page += 1
 					}
-					self.resultsVideos.append(contentsOf: videos.videos)
-					
-					if videos.page > 1 {
-						onSuccess?("#SEARCH VIDEOS -> Success!, page: \(videos.page)")
-					} else {
-						onSuccess?("#SEARCH VIDEOS -> Success!, page: \(videos.page)")
-					}
+					onSuccess?("#SEARCH VIDEOS -> Success!, page: \(videos.page)")
 				} else {
 					onSuccess?("#SEARCH VIDEOS -> Success!, page: \(videos.page)")
-				}
-				
-				do {
-					_ = try JSONDecoder().decode(Videos.self, from: response.data!)
-				} catch let DecodingError.dataCorrupted(context) {
-					print(context)
-				} catch let DecodingError.keyNotFound(key, context) {
-					print("Key '\(key)' not found:", context.debugDescription)
-					print("codingPath:", context.codingPath)
-				} catch let DecodingError.valueNotFound(value, context) {
-					print("Value '\(value)' not found:", context.debugDescription)
-					print("codingPath:", context.codingPath)
-				} catch let DecodingError.typeMismatch(type, context)  {
-					print("Type '\(type)' mismatch:", context.debugDescription)
-					print("codingPath:", context.codingPath)
-				} catch {
-					print("error: ", error)
 				}
 		}
 		
@@ -144,6 +130,10 @@ class SearchVM {
 	
 	var getVideosResultsItemCount: Int {
 		return self.resultsVideos.count
+	}
+	
+	var getVideos: [Video] {
+		return self.resultsVideos
 	}
 	
 	func getVideoItemViewModel(indexPath: IndexPath) -> VideoItemVM {

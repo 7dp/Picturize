@@ -47,7 +47,7 @@ class RegisterVC: UIViewController {
 			viewModel.registerNewUserData()
 			self.dismiss(animated: true, completion: nil)
 		} else {
-			self.showToast(message: isValid.1)
+			self.view.makeToast(isValid.1)
 		}
 	}
 	
