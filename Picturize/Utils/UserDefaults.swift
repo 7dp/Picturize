@@ -43,8 +43,17 @@ extension UserDefaults {
 		set("", forKey: UserDefaultsKey.passwordKey)
 		set("", forKey: UserDefaultsKey.confirmPasswordKey)
 		set(false, forKey: UserDefaultsKey.isLoggedInKey)
+		set(false, forKey: UserDefaultsKey.isHasBeenThroughStartPage)
 		synchronize()
 	}
 	
+	func setAcceptedWalkthrough() {
+		set(true, forKey: UserDefaultsKey.isHasBeenThroughStartPage)
+		synchronize()
+	}
+	
+	var isAcceptedWalkthrough: Bool {
+		return self.bool(forKey: UserDefaultsKey.isHasBeenThroughStartPage)
+	}
 	
 }

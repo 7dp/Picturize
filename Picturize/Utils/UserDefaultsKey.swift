@@ -16,4 +16,5 @@ struct UserDefaultsKey {
 	static let isLoggedInKey = "is_logged_in_key"
 	static let userIdKey = "user_id_key"
 	static let userDataListKey = "user_data_list_key"
+	static let isHasBeenThroughStartPage = "is_has_been_through_start_page"
 }

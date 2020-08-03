@@ -13,6 +13,7 @@ target 'Picturize' do
 	pod 'Lightbox'
 	pod 'Toast-Swift'
 	pod 'VersaPlayer'
+	pod 'Sejima'
 
   target 'PicturizeTests' do
     inherit! :search_paths

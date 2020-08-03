@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--WalkthroughVC-->
+        <scene sceneID="SJA-Hc-V08">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughVC" id="5pi-mS-kvC" customClass="WalkthroughVC" customModule="Picturize" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cDj-4b-G9d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9I-5D-NbO" customClass="MUPageControl" customModule="Sejima">
+                                <rect key="frame" x="20" y="798" width="102" height="64"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.24313725489999999" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="mvk-vD-lVX"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="currentPageIndicatorTintColor">
+                                        <color key="value" red="0.97647058819999999" green="0.6588235294" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pageIndicatorTintColor">
+                                        <color key="value" red="0.97647058819999999" green="0.6588235294" blue="0.14901960780000001" alpha="0.6016695205479452" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WjK-Bv-p3p" customClass="MUHorizontalPager" customModule="Sejima">
+                                <rect key="frame" x="0.0" y="44" width="414" height="715"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.24313725489999999" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="horizontalMargin">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3F5-s5-Ae4" customClass="MUButton" customModule="Sejima">
+                                <rect key="frame" x="286" y="816" width="108" height="46"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="SKIP"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                        <color key="value" red="0.97647058819999999" green="0.6588235294" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21568627450980393" green="0.24313725490196078" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="J9I-5D-NbO" firstAttribute="leading" secondItem="03B-5W-mpn" secondAttribute="leading" constant="25" id="3Jn-6n-Ucn"/>
+                            <constraint firstItem="WjK-Bv-p3p" firstAttribute="leading" secondItem="03B-5W-mpn" secondAttribute="leading" id="GSc-jj-N3V"/>
+                            <constraint firstItem="03B-5W-mpn" firstAttribute="trailing" secondItem="WjK-Bv-p3p" secondAttribute="trailing" id="JSr-aD-N2o"/>
+                            <constraint firstItem="3F5-s5-Ae4" firstAttribute="centerY" secondItem="J9I-5D-NbO" secondAttribute="centerY" id="JXW-Qc-JFN"/>
+                            <constraint firstItem="03B-5W-mpn" firstAttribute="bottom" secondItem="J9I-5D-NbO" secondAttribute="bottom" id="OIN-2G-J7K"/>
+                            <constraint firstItem="WjK-Bv-p3p" firstAttribute="top" secondItem="03B-5W-mpn" secondAttribute="top" id="cEG-lt-vGi"/>
+                            <constraint firstItem="J9I-5D-NbO" firstAttribute="top" secondItem="WjK-Bv-p3p" secondAttribute="bottom" constant="70" id="dQ2-F0-RU6"/>
+                            <constraint firstItem="03B-5W-mpn" firstAttribute="trailing" secondItem="3F5-s5-Ae4" secondAttribute="trailing" constant="25" id="ibw-e2-Tm8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="03B-5W-mpn"/>
+                    </view>
+                    <connections>
+                        <outlet property="horizontalPager" destination="WjK-Bv-p3p" id="RXn-hw-4FA"/>
+                        <outlet property="pageControl" destination="J9I-5D-NbO" id="Zex-T9-E2z"/>
+                        <outlet property="skipButton" destination="3F5-s5-Ae4" id="OfN-1g-nzG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i7a-mt-KTS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-171.01449275362319" y="-216.29464285714286"/>
+        </scene>
+        <!--Walkthrough ContentVC-->
+        <scene sceneID="bgc-gK-dlH">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughContentVC" id="VnN-hR-OqV" customClass="WalkthroughContentVC" customModule="Picturize" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cZo-S7-5I9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G6J-eu-JwR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3rw-S8-7MD">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Dy3-Tp-rvA"/>
+                                    <constraint firstAttribute="height" constant="200" id="GI8-k4-x6U"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gU8-dd-ZSK" customClass="MUHeader" customModule="Sejima">
+                                <rect key="frame" x="20" y="734" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="FRESH CONTENTS"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="detail" value="We serve you with our fresh contents"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="detailColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2156862745" green="0.24313725489999999" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3rw-S8-7MD" firstAttribute="centerY" secondItem="cZo-S7-5I9" secondAttribute="centerY" id="1j8-hD-klN"/>
+                            <constraint firstAttribute="trailing" secondItem="G6J-eu-JwR" secondAttribute="trailing" id="4ui-zi-NCh"/>
+                            <constraint firstAttribute="bottom" secondItem="G6J-eu-JwR" secondAttribute="bottom" id="8Im-p1-FWz"/>
+                            <constraint firstItem="G6J-eu-JwR" firstAttribute="top" secondItem="cZo-S7-5I9" secondAttribute="top" id="Lqn-Sw-ZR1"/>
+                            <constraint firstItem="FuB-Lp-7Nl" firstAttribute="trailing" secondItem="gU8-dd-ZSK" secondAttribute="trailing" id="SdB-lJ-Bfz"/>
+                            <constraint firstItem="G6J-eu-JwR" firstAttribute="leading" secondItem="cZo-S7-5I9" secondAttribute="leading" id="VMn-qJ-vMc"/>
+                            <constraint firstItem="gU8-dd-ZSK" firstAttribute="leading" secondItem="FuB-Lp-7Nl" secondAttribute="leading" id="XOh-Wm-d86"/>
+                            <constraint firstItem="gU8-dd-ZSK" firstAttribute="centerX" secondItem="cZo-S7-5I9" secondAttribute="centerX" id="jMe-dD-nus"/>
+                            <constraint firstItem="gU8-dd-ZSK" firstAttribute="bottom" secondItem="FuB-Lp-7Nl" secondAttribute="bottom" constant="20" id="mqa-C8-PiQ"/>
+                            <constraint firstItem="3rw-S8-7MD" firstAttribute="centerX" secondItem="cZo-S7-5I9" secondAttribute="centerX" id="yXZ-nk-I28"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FuB-Lp-7Nl"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="gU8-dd-ZSK" id="rVf-6r-KIx"/>
+                        <outlet property="iconImageView" destination="3rw-S8-7MD" id="KJw-xN-btV"/>
+                        <outlet property="imageView" destination="G6J-eu-JwR" id="49l-rR-Aek"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X3a-bh-SNE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="550.72463768115949" y="-216.29464285714286"/>
+        </scene>
+    </scenes>
+</document>

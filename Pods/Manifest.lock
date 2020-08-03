@@ -5,9 +5,12 @@ PODS:
     - Cache (~> 5.3.0)
   - Lightbox (2.4.1):
     - Imaginary (~> 4.3.1)
+  - Neumann (1.2.0)
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
+  - Sejima (1.8.0):
+    - Neumann
   - Toast-Swift (5.0.1)
   - VersaPlayer (3.0.2)
   - XLPagerTabStrip (8.1.0)
@@ -16,6 +19,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Lightbox
   - SDWebImage
+  - Sejima
   - Toast-Swift
   - VersaPlayer
   - XLPagerTabStrip
@@ -26,7 +30,9 @@ SPEC REPOS:
     - Cache
     - Imaginary
     - Lightbox
+    - Neumann
     - SDWebImage
+    - Sejima
     - Toast-Swift
     - VersaPlayer
     - XLPagerTabStrip
@@ -36,11 +42,13 @@ SPEC CHECKSUMS:
   Cache: 48762993ec44e1d93483c4d4a13edd18452326f4
   Imaginary: 18c5bba364229eef383b925199db442e71d175e1
   Lightbox: cede4a64f2d864da1f7e7959aa78a8659a311e7c
+  Neumann: 9ce57ac4a26916c47f079e213a442558f2437cf4
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  Sejima: 333ff2658cc384fa8ce7bce0402aef50a653ef9e
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   VersaPlayer: 0e9a0ea7da786729ffb377dbd17b34641a8265e4
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: fae524adc55fae20a1d269633a3fb08237fb270d
+PODFILE CHECKSUM: 2c4c1a1c0eb3e1daf8113ef6650fc0bd6f1a4f3b
 
 COCOAPODS: 1.9.2
