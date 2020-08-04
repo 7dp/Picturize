@@ -17,6 +17,7 @@ class SearchVM {
 	var page = 1
 	var perPage = 20
 	var videoTotalResults = 0
+	var photoTotalResults = 0
 	private var isFetchingInProgress = false
 	
 	//MARK: - PHOTO
@@ -27,8 +28,11 @@ class SearchVM {
 		
 		print("IS PHOTOS FETCHING IN PROGRESS: ", isFetchingInProgress)
 		
-		guard !isFetchingInProgress else {
-			print("isPhotosFetchingInProgress")
+//		guard !isFetchingInProgress else {
+//			print("isPhotosFetchingInProgress")
+//			return
+//		}
+		if isFetchingInProgress {
 			return
 		}
 		isFetchingInProgress = true
@@ -44,6 +48,7 @@ class SearchVM {
 				self.isFetchingInProgress = false
 				if !photos.photos.isEmpty {
 					if let totalResults = photos.totalResults {
+						self.photoTotalResults = totalResults
 						if totalResults > self.perPage {
 							self.page += 1
 						}

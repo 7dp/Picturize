@@ -288,7 +288,11 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
 	func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
 		if indexPaths.contains(where: self.isLoadingCell(for:)) {
 			if scopePosition == 0 {
-				self.fetchPhotosByQuery(dataQuery: self.query)
+				if self.viewModel.getPhotosResultsItemCount < self.viewModel.photoTotalResults {
+					self.fetchPhotosByQuery(dataQuery: self.query)
+				} else {
+					return
+				}
 			} else {
 				if self.viewModel.getVideosResultsItemCount < self.viewModel.videoTotalResults {
 					self.fetchVideosByQuery(dataQuery: self.query)
